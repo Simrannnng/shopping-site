@@ -18,18 +18,21 @@ const Header = () => {
         <>
             {/* Black Bar */}
             <AppBar
-                position="sticky"
+                position="fixed"
                 sx={{
+                    top: 0,
                     backgroundColor: "black",
-                    padding: "5px 0",
+                    padding: "5px 10px",
+                    zIndex: 1300,
+                    width: "100%", 
                     fontSize: { xs: "0.8rem", sm: "1rem" },
                 }}
             >
                 <Toolbar
                     sx={{
-                        flexDirection: { xs: "column", sm: "row" }, // Stack items vertically on mobile
-                        justifyContent: "center", // Center-align items
-                        alignItems: "center", // Center-align items in both directions
+                        flexDirection: { xs: "column", sm: "row" }, 
+                        justifyContent: "center", 
+                        alignItems: "center", 
                     }}
                 >
                     {/* Summer Sale Message */}
@@ -51,16 +54,16 @@ const Header = () => {
 
                     <Select
                         defaultValue="English"
-                        IconComponent={ArrowDropDownIcon} // Specify the dropdown arrow icon
+                        IconComponent={ArrowDropDownIcon} 
                         sx={{
                             color: "white",
                             height: "40px",
                             fontSize: "16px",
                             marginRight:{lg:"50px"},
-                            marginTop: { xs: "5px", sm: 0 }, // Add spacing for mobile
-                            textAlign: "center", // Center text in the dropdown
+                            marginTop: { xs: "5px", sm: 0 }, 
+                            textAlign: "center",
                             "& .MuiSelect-icon": {
-                                color: "white", // Ensure the arrow is visible in white color
+                                color: "white", 
                             },
                         }}
                     >
@@ -74,22 +77,22 @@ const Header = () => {
 
 
             {/* Navigation Bar */}
-            <AppBar position="static" color="inherit" elevation={0}>
+            <AppBar position="fixed" color="inherit" elevation={1} sx={{ top: {xs: 100 ,sm:70}, width: "100%", zIndex: 1299 }}>
                 <Toolbar sx={{ justifyContent: "space-between", padding: "10px 20px" }}>
-                    {/* Logo (Left) */}
+                    
                     <Typography
                         variant="h6"
                         component="div"
                         sx={{
                             fontWeight: "bold",
-                            marginLeft: { lg: "30px" },
+                            marginLeft: { lg: "55px" },
                             flexGrow: { xs: 0, md: 0 },
                         }}
                     >
                         Exclusive
                     </Typography>
 
-                    {/* Navigation Links (Visible for tablet and larger screens) */}
+                
                     <Box
                         sx={{
                             display: { xs: "none", sm: "flex", md: "flex" },
@@ -161,7 +164,8 @@ const Header = () => {
                 anchor="right"
                 open={drawerOpen}
                 onClose={toggleDrawer(false)}
-                sx={{ display: { xs: "block", md: "none" } }}
+                sx={{ display: { xs: "block", md: "none" },
+                zIndex: 1400, }}
             >
                 <Box
                     sx={{ width: 150 }}

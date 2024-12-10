@@ -7,7 +7,11 @@ import apple from '../../Assets/Png/download-appstore.png';
 
 const Footer = () => {
     return (
-        <Box sx={{ backgroundColor: '#000', color: '#fff', py: 5 }}>
+        <Box sx={{  backgroundColor: '#000',
+            color: '#fff',
+            py: 5,
+            marginTop: { xs: 12, lg: 17 },
+            }}>
             <Grid
                 container
                 spacing={5}

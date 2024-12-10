@@ -1,12 +1,21 @@
 
 import './App.css';
-import Footer from './Components/Footer/footer';
+import Wishlist from './Pages/CartsPage/carts';
+
+import Header from './Components/Header/header';
+import Footer from './Components/Footer/footer'
+
 
 
 function App() {
   return (
-    <Footer/>
+    <div>
+      <Header/>
+      <Wishlist/>
+      <Footer/>
+    </div>
   );
 }
 
 export default App;
+ 
