@@ -1,13 +1,12 @@
 import React from "react";
 import Layout from "../../Layout";
-import CartComponent from "./total";
+import MainComponent from "./carts";
 
-
-const Total =() => {
+const LandingPage =() => {
     return (
         <Layout>
-            <CartComponent/>
+            <MainComponent/>
         </Layout>
     )
 }
-export default Total
+export default LandingPage

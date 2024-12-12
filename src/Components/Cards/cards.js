@@ -1,10 +1,14 @@
 import React from "react";
-import { Box, Typography, Button, IconButton, Card, CardMedia, CardContent, Rating } from "@mui/material";
+import { Box, Typography, Button, Card, CardMedia, CardContent, Rating } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import { useNavigate } from "react-router-dom";
+const ReusableCard = ({ product }) => {
 
-const ReusableCard = ({ product, actionIcon, onActionClick }) => {
+  const navigate = useNavigate();
+
+  const handleAddToCartClick = () => {
+    navigate("/Total-page"); 
+  };
   return (
     <Card
       sx={{
@@ -33,19 +37,6 @@ const ReusableCard = ({ product, actionIcon, onActionClick }) => {
         </Box>
       )}
 
-      
-      <IconButton
-        sx={{
-          position: "absolute",
-          top: 8,
-          right: 8,
-          color: "grey.600",
-        }}
-        onClick={onActionClick} 
-      >
-        {actionIcon === "delete" ? <DeleteOutlineOutlinedIcon /> : <VisibilityOutlinedIcon />}
-      </IconButton>
-
       {/* Product Image */}
       <CardMedia
         component="img"
@@ -62,6 +53,7 @@ const ReusableCard = ({ product, actionIcon, onActionClick }) => {
       <Button
         fullWidth
         variant="contained"
+        onClick={handleAddToCartClick}
         sx={{
           backgroundColor: "black",
           color: "white",

@@ -1,21 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { appRoutes } from './Routes/index';
 
-import './App.css';
-import Wishlist from './Pages/CartsPage/carts';
-
-import Header from './Components/Header/header';
-import Footer from './Components/Footer/footer'
-
-
-
-function App() {
+const App = () => {
   return (
-    <div>
-      <Header/>
-      <Wishlist/>
-      <Footer/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {appRoutes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
- 

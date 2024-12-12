@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import ReusableSection from "../../Components/Cards/reuse";
 import { Box } from "@mui/material";
+
+import ReusableSection from "../../Components/Cards/reuse";
 import image1 from "../../Assets/Png/Frame 604.png";
 import image2 from "../../Assets/Png/Frame 608.png";
 import image3 from "../../Assets/Png/Frame 609.png";
@@ -11,6 +12,8 @@ import image7 from "../../Assets/Png/ak-900-01-500x500 1.png";
 import image8 from "../../Assets/Png/698717_Z8A1X_3475_001_100_0000_Light-Reversible-quilted-satin-jacket 1.png";
 
 const MainComponent = () => {
+  
+
   const initialWishlist = [
     { name: "Gucci duffle bag", price: 960, originalPrice: 1160, badge: "-35%", image: image1 },
     { name: "RGB liquid CPU Cooler", price: 1960, image: image2 },
@@ -29,42 +32,26 @@ const MainComponent = () => {
     { name: "Portable SSD", price: 300, image: image1, rating: 4.6, reviews: 40 },
   ];
 
-  const [wishlistProducts, setWishlistProducts] = useState(initialWishlist);
-  const [allFeaturedProducts, setAllFeaturedProducts] = useState(initialFeatured);
   const [showAll, setShowAll] = useState(false);
 
   const displayedFeaturedProducts = showAll
-    ? allFeaturedProducts
-    : allFeaturedProducts.slice(0, 4);
+    ? initialFeatured
+    : initialFeatured.slice(0, 4);
 
-  // Handle delete from wishlist
-  const handleDeleteFromWishlist = (index) => {
-    setWishlistProducts((prev) => prev.filter((_, i) => i !== index));
-  };
-
-  // Handle add to wishlist
-  const handleAddToWishlist = (index) => {
-    const productToMove = allFeaturedProducts[index];
-    setWishlistProducts((prev) => [...prev, productToMove]);
-    setAllFeaturedProducts((prev) => prev.filter((_, i) => i !== index));
-  };
-
+  
   return (
     <Box>
       <ReusableSection
-        title={`Wishlist (${wishlistProducts.length})`}
+        title={`Wishlist (${initialWishlist.length})`}
         buttonText="Move All To Bag"
-        products={wishlistProducts}
-        actionIcon="delete"
-        onActionClick={handleDeleteFromWishlist}
+        products={initialWishlist}
       />
       <ReusableSection
         title="Just For You"
         buttonText={showAll ? "See Less" : "See All"}
         products={displayedFeaturedProducts}
-        actionIcon="eye"
-        onActionClick={handleAddToWishlist}
         onButtonClick={() => setShowAll(!showAll)}
+        
         mt={14}
       />
     </Box>
@@ -72,3 +59,4 @@ const MainComponent = () => {
 };
 
 export default MainComponent;
+
