@@ -2,19 +2,28 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import ReusableCard from "../../Components/Cards/cards";
 
-const ReusableSection = ({ title, buttonText, products, actionIcon, mt, onButtonClick, onActionClick }) => {
+const ReusableSection = ({ 
+  title, 
+  buttonText, 
+  products, 
+  actionIcon, 
+  mt, 
+  onButtonClick, 
+  onActionClick, 
+  addToCart  // Add the addToCart prop
+}) => {
   return (
     <Box sx={{ mt: mt || 27 }}>
       {/* Title and Button */}
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 8 }}>
         <Typography
           variant="h6"
-          sx={{ marginLeft: { xs: '10px', sm: '50px', md: '70px ', lg: '80px' } }}
+          sx={{ marginLeft: { xs: '10px', sm: '50px', md: '70px', lg: '80px' } }}
         >
           {title}
         </Typography>
         <Button
-          variant="outlined"
+          variant="outlined" 
           sx={{
             textTransform: "none",
             color: 'black',
@@ -25,16 +34,16 @@ const ReusableSection = ({ title, buttonText, products, actionIcon, mt, onButton
           {buttonText}
         </Button>
       </Box>
-      
 
       {/* Cards */}
       <Box sx={{ display: "flex", gap: 4, flexWrap: "wrap", justifyContent: "center" }}>
-        {products.map((product, index) => (
+        {products.map((product) => (
           <ReusableCard
-            key={index}
+            key={product.id}  // Use product.id instead of index for better key uniqueness
             product={product}
             actionIcon={actionIcon}
-            onActionClick={() => onActionClick(index)} 
+            onActionClick={() => onActionClick(product.id)} // Update to pass product.id
+            addToCart={() => addToCart(product)}  // Pass the addToCart function with the current product
           />
         ))}
       </Box>

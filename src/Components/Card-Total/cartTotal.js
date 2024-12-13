@@ -1,19 +1,25 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const CartTotalComponent = ({ cartItems }) => {
-    // Calculate subtotal
+const CartTotalComponent = ({ cartItems, sx = {}, hideCheckoutButton = false }) => {
+    const navigate = useNavigate();
+
+    const handleCheckOutClick = () => {
+        navigate("/Form-page", { state: { cartItems } });
+    };
+
     const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     return (
         <Box
             sx={{
-                border: "1px solid #ddd",
+                border: hideCheckoutButton ? "none" : "1px solid #ddd",
                 borderRadius: "8px",
                 padding: "16px",
-                width: { lg: "300px" },
-                marginTop: { lg: "-40px", md: "-40px", sm: "-40px", xs: "40px" },
-                marginLeft: { lg: "955px", md: "635px", sm: "400px" }
+                width: { lg: "300px", ...sx },
+                marginTop: { lg: "-40px", md: "-40px", sm: "-40px", xs: "40px", ...sx },
+                marginLeft: { lg: "955px", md: "635px", sm: "400px", ...sx },
             }}
         >
             <Typography
@@ -56,20 +62,23 @@ const CartTotalComponent = ({ cartItems }) => {
                 <Typography>Total:</Typography>
                 <Typography sx={{ fontWeight: "bold" }}>${subtotal.toFixed(2)}</Typography>
             </Box>
-            <Button
-                variant="contained"
-                sx={{
-                    backgroundColor: "#D03228",
-                    color: "white",
-                    width: "100%",
-                    padding: "10px 0",
-                    fontWeight: "bold",
-                    textTransform: "none",
-                    '&:hover': { backgroundColor: "#A52A1E" },
-                }}
-            >
-                Proceed to checkout
-            </Button>
+            {!hideCheckoutButton && (
+                <Button
+                    variant="contained"
+                    onClick={handleCheckOutClick}
+                    sx={{
+                        backgroundColor: "#D03228",
+                        color: "white",
+                        width: "100%",
+                        padding: "10px 0",
+                        fontWeight: "bold",
+                        textTransform: "none",
+                        '&:hover': { backgroundColor: "#A52A1E" },
+                    }}
+                >
+                    Proceed to checkout
+                </Button>
+            )}
         </Box>
     );
 };

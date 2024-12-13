@@ -1,14 +1,8 @@
 import React from "react";
 import { Box, Typography, Button, Card, CardMedia, CardContent, Rating } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useNavigate } from "react-router-dom";
-const ReusableCard = ({ product }) => {
 
-  const navigate = useNavigate();
-
-  const handleAddToCartClick = () => {
-    navigate("/Total-page"); 
-  };
+const ReusableCard = ({ product, addToCart }) => {
   return (
     <Card
       sx={{
@@ -53,7 +47,6 @@ const ReusableCard = ({ product }) => {
       <Button
         fullWidth
         variant="contained"
-        onClick={handleAddToCartClick}
         sx={{
           backgroundColor: "black",
           color: "white",
@@ -61,6 +54,7 @@ const ReusableCard = ({ product }) => {
           "&:hover": { backgroundColor: "#333" },
         }}
         startIcon={<ShoppingCartIcon />}
+        onClick={() => addToCart(product)} // Call addToCart with product details
       >
         Add To Cart
       </Button>

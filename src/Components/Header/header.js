@@ -6,12 +6,18 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     const toggleDrawer = (open) => () => {
         setDrawerOpen(open);
+    };
+    const navigate = useNavigate();
+
+    const handleAddToCartClick = () => {
+      navigate("/Total-page"); 
     };
 
     return (
@@ -141,7 +147,12 @@ const Header = () => {
                             <Badge badgeContent={4} color="error" sx={{width:{xs:"5px"}}}>
                                 <FavoriteBorderIcon />
                             </Badge>
-                            <Badge color="error" sx={{width:{xs:"5px"}}}>
+                            <Badge color="error"
+                            onClick={handleAddToCartClick}
+                            
+                            sx={{width:{xs:"5px"}}}>
+
+
                                 <ShoppingCartOutlinedIcon />
                             </Badge>
                             <Badge color="error" sx={{width:{xs:"5px"}}}>
