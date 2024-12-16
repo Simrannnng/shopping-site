@@ -47,14 +47,14 @@ const MainComponent = () => {
         buttonText="Move All To Bag"
         products={initialWishlist}
         onButtonClick={() => initialWishlist.forEach(addToCart)}
-        addToCart={addToCart} // Pass the addToCart function
+        addToCart={addToCart} 
       />
       <ReusableSection
         title="Just For You"
         buttonText={showAll ? "See Less" : "See All"}
         products={displayedFeaturedProducts}
         onButtonClick={() => setShowAll(!showAll)}
-        addToCart={addToCart} // Pass the addToCart function
+        addToCart={addToCart} 
         mt={14}
       />
     </Box>

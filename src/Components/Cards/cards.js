@@ -1,8 +1,12 @@
-import React from "react";
+import React , { useContext }  from "react";
 import { Box, Typography, Button, Card, CardMedia, CardContent, Rating } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { CartContext } from '../../Pages/Context/context';
 
-const ReusableCard = ({ product, addToCart }) => {
+
+const ReusableCard = ({ product }) => {
+  const { addToCart } = useContext(CartContext);
   return (
     <Card
       sx={{
@@ -29,7 +33,18 @@ const ReusableCard = ({ product, addToCart }) => {
         >
           {product.badge}
         </Box>
+        
       )}
+      <DeleteOutlineIcon
+        sx={{
+          position: "absolute",
+          top: 8,
+          right: 8,
+          cursor: "pointer",
+          color: "gray",
+          "&:hover": { color: "black" },
+        }}
+      />
 
       {/* Product Image */}
       <CardMedia
@@ -54,10 +69,11 @@ const ReusableCard = ({ product, addToCart }) => {
           "&:hover": { backgroundColor: "#333" },
         }}
         startIcon={<ShoppingCartIcon />}
-        onClick={() => addToCart(product)} // Call addToCart with product details
+        onClick={() => addToCart(product)} 
       >
         Add To Cart
       </Button>
+      
 
       {/* Product Details */}
       <CardContent sx={{ textAlign: "left" }}>

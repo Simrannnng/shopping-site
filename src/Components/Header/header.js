@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {AppBar,Toolbar,Box,Typography,InputBase,IconButton,Badge,Drawer,List,ListItem,ListItemText,Select,MenuItem} from "@mui/material";
+import React, { useState, useContext } from "react";
+import { AppBar, Toolbar, Box, Typography, InputBase, IconButton, Badge, Drawer, List, ListItem, ListItemText, Select, MenuItem } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
@@ -7,9 +7,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from '../../Pages/Context/context';
+
 
 const Header = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const { cartItems } = useContext(CartContext);
+
 
     const toggleDrawer = (open) => () => {
         setDrawerOpen(open);
@@ -17,7 +21,7 @@ const Header = () => {
     const navigate = useNavigate();
 
     const handleAddToCartClick = () => {
-      navigate("/Total-page"); 
+        navigate("/Total-page");
     };
 
     return (
@@ -30,15 +34,15 @@ const Header = () => {
                     backgroundColor: "black",
                     padding: "5px 10px",
                     zIndex: 1300,
-                    width: "100%", 
+                    width: "100%",
                     fontSize: { xs: "0.8rem", sm: "1rem" },
                 }}
             >
                 <Toolbar
                     sx={{
-                        flexDirection: { xs: "column", sm: "row" }, 
-                        justifyContent: "center", 
-                        alignItems: "center", 
+                        flexDirection: { xs: "column", sm: "row" },
+                        justifyContent: "center",
+                        alignItems: "center",
                     }}
                 >
                     {/* Summer Sale Message */}
@@ -60,16 +64,16 @@ const Header = () => {
 
                     <Select
                         defaultValue="English"
-                        IconComponent={ArrowDropDownIcon} 
+                        IconComponent={ArrowDropDownIcon}
                         sx={{
                             color: "white",
                             height: "40px",
                             fontSize: "16px",
-                            marginRight:{lg:"50px"},
-                            marginTop: { xs: "5px", sm: 0 }, 
+                            marginRight: { lg: "50px" },
+                            marginTop: { xs: "5px", sm: 0 },
                             textAlign: "center",
                             "& .MuiSelect-icon": {
-                                color: "white", 
+                                color: "white",
                             },
                         }}
                     >
@@ -83,9 +87,9 @@ const Header = () => {
 
 
             {/* Navigation Bar */}
-            <AppBar position="fixed" color="inherit" elevation={1} sx={{ top: {xs: 100 ,sm:70}, width: "100%", zIndex: 1299 }}>
+            <AppBar position="fixed" color="inherit" elevation={1} sx={{ top: { xs: 100, sm: 70 }, width: "100%", zIndex: 1299 }}>
                 <Toolbar sx={{ justifyContent: "space-between", padding: "10px 20px" }}>
-                    
+
                     <Typography
                         variant="h6"
                         component="div"
@@ -98,7 +102,7 @@ const Header = () => {
                         Exclusive
                     </Typography>
 
-                
+
                     <Box
                         sx={{
                             display: { xs: "none", sm: "flex", md: "flex" },
@@ -111,7 +115,7 @@ const Header = () => {
                         <Typography variant="body1" sx={{ cursor: "pointer" }}>
                             Contact
                         </Typography>
-                        
+
                         <Typography variant="body1" sx={{ cursor: "pointer" }}>
                             About
                         </Typography>
@@ -121,7 +125,7 @@ const Header = () => {
                     </Box>
 
                     {/* Search Bar */}
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: { lg: '30px', sm: '10px' }, marginRight: { lg: "80px" , md:"20px"} }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: { lg: '30px', sm: '10px' }, marginRight: { lg: "80px", md: "20px" } }}>
 
                         <Box
                             sx={{
@@ -130,7 +134,7 @@ const Header = () => {
                                 backgroundColor: '#f5f5f5',
                                 borderRadius: '5px',
                                 padding: { lg: '0 10px', sm: '0 1px' },
-                                width: { lg: '250px', sm: "210px" , },
+                                width: { lg: '250px', sm: "210px", },
                             }}
                         >
                             <InputBase
@@ -143,19 +147,20 @@ const Header = () => {
                         </Box>
 
 
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: { lg: '30px',md:"30px", sm: '25px', xs: '30px' } }}>
-                            <Badge badgeContent={4} color="error" sx={{width:{xs:"5px"}}}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: { lg: '30px', md: "30px", sm: '25px', xs: '30px' } }}>
+                            <Badge badgeContent={4} color="error" sx={{ width: { xs: "5px" } }}>
                                 <FavoriteBorderIcon />
                             </Badge>
                             <Badge color="error"
-                            onClick={handleAddToCartClick}
-                            
-                            sx={{width:{xs:"5px"}}}>
+                                onClick={handleAddToCartClick}
+                                badgeContent={cartItems.length}
+
+                                sx={{ width: { xs: "5px" } }}>
 
 
                                 <ShoppingCartOutlinedIcon />
                             </Badge>
-                            <Badge color="error" sx={{width:{xs:"5px"}}}>
+                            <Badge color="error" sx={{ width: { xs: "5px" } }}>
                                 <PermIdentityIcon />
                             </Badge>
                             <IconButton
@@ -175,8 +180,10 @@ const Header = () => {
                 anchor="right"
                 open={drawerOpen}
                 onClose={toggleDrawer(false)}
-                sx={{ display: { xs: "block", md: "none" },
-                zIndex: 1400, }}
+                sx={{
+                    display: { xs: "block", md: "none" },
+                    zIndex: 1400,
+                }}
             >
                 <Box
                     sx={{ width: 150 }}

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const CartTotalComponent = ({ cartItems, sx = {}, hideCheckoutButton = false }) => {
+const CartTotalComponent = ({ cartItems, discount = 0, sx = {}, hideCheckoutButton = false }) => {
     const navigate = useNavigate();
 
     const handleCheckOutClick = () => {
@@ -10,6 +10,7 @@ const CartTotalComponent = ({ cartItems, sx = {}, hideCheckoutButton = false }) 
     };
 
     const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const discountedTotal = discount < 1 ? subtotal - subtotal * discount : subtotal - discount;
 
     return (
         <Box
@@ -40,18 +41,22 @@ const CartTotalComponent = ({ cartItems, sx = {}, hideCheckoutButton = false }) 
                 <Typography>Subtotal:</Typography>
                 <Typography sx={{ fontWeight: "bold" }}>${subtotal.toFixed(2)}</Typography>
             </Box>
-            <Box
-                sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "8px",
-                    borderBottom: "1px solid #ddd",
-                    paddingBottom: "8px",
-                }}
-            >
-                <Typography>Shipping:</Typography>
-                <Typography sx={{ fontWeight: "bold" }}>Free</Typography>
-            </Box>
+            {discount > 0 && (
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        marginBottom: "8px",
+                        borderBottom: "1px solid #ddd",
+                        paddingBottom: "8px",
+                    }}
+                >
+                    <Typography>Discount:</Typography>
+                    <Typography sx={{ fontWeight: "bold" }}>
+                        -${(subtotal - discountedTotal).toFixed(2)}
+                    </Typography>
+                </Box>
+            )}
             <Box
                 sx={{
                     display: "flex",
@@ -60,7 +65,7 @@ const CartTotalComponent = ({ cartItems, sx = {}, hideCheckoutButton = false }) 
                 }}
             >
                 <Typography>Total:</Typography>
-                <Typography sx={{ fontWeight: "bold" }}>${subtotal.toFixed(2)}</Typography>
+                <Typography sx={{ fontWeight: "bold" }}>${discountedTotal.toFixed(2)}</Typography>
             </Box>
             {!hideCheckoutButton && (
                 <Button
@@ -82,5 +87,4 @@ const CartTotalComponent = ({ cartItems, sx = {}, hideCheckoutButton = false }) 
         </Box>
     );
 };
-
 export default CartTotalComponent;

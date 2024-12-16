@@ -3,15 +3,13 @@ import { Box, Button, Typography, Table, TableBody, TableCell, TableContainer, T
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
-import CouponComponent from '../../Components/Coupon/coupon';
 import CartTotalComponent from '../../Components/Card-Total/cartTotal';
 import { CartContext } from "../../Pages/Context/context";
 
 const CartComponent = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
 
-  const handleQuantityChange = (id, increment) => {
+  const handleQuantityChange = (id, increment) => { 
     setCartItems((prevItems) =>
       prevItems.map((item) =>
         item.id === id
@@ -76,11 +74,12 @@ const CartComponent = () => {
       </TableContainer>
 
       <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: { lg: "60px" } }}>
-        <Button variant="outlined" color="black" sx={{ marginLeft: { lg: "65px" }, width: { lg: "170px", md: "160px", sm: "150px" }, height: { lg: "50px", md: "40px", sm: "30px" }, fontSize: { md: "13px", sm: "12px", xs: "11px" } }}>Return To Shop</Button>
-        <Button variant="outlined" color="black" sx={{ marginRight: { lg: "65px" }, width: { lg: "170px", md: "160px", sm: "150px" }, height: { lg: "50px", md: "40px", sm: "30px" }, fontSize: { md: "13px", sm: "12px", xs: "11px" } }}>Update card</Button>
+        <Button variant="outlined" color="black" sx={{ marginLeft: { lg: "65px" }, width: { lg: "170px", md: "160px", sm: "150px" }, height: { lg:"50px", md: "40px", sm: "30px", xs:"30px" }, fontSize: { md: "13px", sm: "12px", xs: "11px" } }}>Return To Shop</Button>
+        <Button variant="outlined" color="black" sx={{ marginRight: { lg: "65px" }, width: { lg: "170px", md: "160px", sm: "150px" }, height: { lg: "50px", md: "40px", sm: "30px" }, fontSize: { md: "13px", sm: "12px", xs: "11px" }, marginBottom:{lg:"80px", md:"70px", sm:"60px", xs:"10px"
+        } }}>Update card</Button>
         
       </Box>
-      <CouponComponent />
+      
       <CartTotalComponent cartItems={cartItems} />
     </Box>
   );

@@ -2,16 +2,11 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import ReusableCard from "../../Components/Cards/cards";
 
-const ReusableSection = ({ 
-  title, 
-  buttonText, 
-  products, 
-  actionIcon, 
-  mt, 
-  onButtonClick, 
-  onActionClick, 
-  addToCart  // Add the addToCart prop
-}) => {
+const ReusableSection = ({ title, buttonText, products, actionIcon, mt, onButtonClick, onActionClick, addToCart}) => {
+
+
+
+  
   return (
     <Box sx={{ mt: mt || 27 }}>
       {/* Title and Button */}
