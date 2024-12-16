@@ -14,7 +14,6 @@ const Header = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const { cartItems } = useContext(CartContext);
 
-
     const toggleDrawer = (open) => () => {
         setDrawerOpen(open);
     };
@@ -60,8 +59,6 @@ const Header = () => {
                         <span style={{ fontWeight: "bold", cursor: "pointer" }}>ShopNow</span>
                     </Typography>
 
-
-
                     <Select
                         defaultValue="English"
                         IconComponent={ArrowDropDownIcon}
@@ -97,12 +94,12 @@ const Header = () => {
                             fontWeight: "bold",
                             marginLeft: { lg: "55px" },
                             flexGrow: { xs: 0, md: 0 },
+                            cursor: "pointer",
                         }}
+                        onClick={() => navigate("/")}
                     >
                         Exclusive
                     </Typography>
-
-
                     <Box
                         sx={{
                             display: { xs: "none", sm: "flex", md: "flex" },
