@@ -38,7 +38,7 @@ const CartTotalComponent = ({ cartItems, discount = 0, sx = {}, hideCheckoutButt
                     paddingBottom: "8px",
                 }}
             >
-                <Typography>Subtotal:</Typography>
+                <Typography>Subtotal=</Typography>
                 <Typography sx={{ fontWeight: "bold" }}>${subtotal.toFixed(2)}</Typography>
             </Box>
             {discount > 0 && (
