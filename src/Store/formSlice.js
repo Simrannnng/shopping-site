@@ -7,7 +7,7 @@ const formSlice = createSlice({
     },
     reducers: {
         saveFormData: (state, action) => {
-            console.log('Saving form data in the redux toolkit', action.payload);
+            console.log('final results', action.payload);
             state.data = action.payload;
         },
     },
